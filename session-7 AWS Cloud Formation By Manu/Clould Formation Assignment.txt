@@ -1,0 +1,4 @@
+AWS infrastructure has to be created as per the attached "Cloud Formation Assignment" Image
+Both app server and dv servers are in private subnet
+Only elastic loadbalancer will be in public subnet
+
