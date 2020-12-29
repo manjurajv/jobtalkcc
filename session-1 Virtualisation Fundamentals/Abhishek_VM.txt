@@ -1,0 +1,42 @@
+Virtual Box Commands for CLI(Command Line Interface) :-
+First we have to go the foler where our VBoxManage.exe file in present
+
+List all the VMs present in your system:-
+	$VBoxManage list vms
+
+List all the VMs along with their details and configurations:-
+	$VBoxManage list -l vms
+
+List all currently running VMs:-
+	$VBoxManage list -l runningvms
+
+List all types of OS that Virtual Box supports:-
+	$VBoxManage list ostypes
+
+To know other available options for "list", use the following command:-
+	$VBoxManage list --help
+
+Create a new VM:-
+To create a new VM first we have create an instance for it, then we should configure according to our convenience, then we have specify the path of the vdi(Virtual Disk Image) file.
+
+
+Create instance:-
+	$VBoxManage createvm --name <vm_name> --ostype <os_type> --register
+
+To know configurations of particular VM:-
+	$VBoxManage showvminfo <vm_name>
+
+To know particular configuration of the VM:-
+	$VBoxManage showvminfo <vm_name> | grep "Memory size" (in linux)
+
+To modify parameters, configurations of the VM:-
+	$VBoxManage modifyvm <vm_name> --cpus 2 --memory 2048 --vram 12
+	$VBoxManage modifyvm <vm_name> --nic1 bridged --bridgeadapter1 eth0
+
+Attaching vdi file to created VM instance:-
+	$VBoxManage createhd --filename <path> --size 5120 --variant Standard 
+	$VBoxManage modifyhd (to modify storage allocated for VM)
+
+
+Explore this site for more commands:-
+	https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html
