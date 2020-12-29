@@ -1,0 +1,28 @@
+Open stack components :-
+
+Compute:-
+	Nova - Compute (Used to access VMs, Containers, Compute resources)
+	Zun - Containers Service (Simplified APIs)
+	Qinling - Functions Service (Support Serverless funtions like AWS Lambda)
+
+Storage
+	Swift - Object storage (Object or blob storage; cheap, durability, availability, concurrency, good for data that can grow without bound - unstructured)
+	Cinder - Block Storage (Virtualizes the management of block storage)
+	Manila - Shared filesystems (Coordinated access to shared or distributed file systems)
+
+Networking:- 
+	Neutron - Netorking (Network as a Service-NaaS for Openstack)
+	Designate - DNS Service (DNS as a Service for Openstack)
+	Octivia - Load balancer (Horizontal balancer)
+
+Workload Provisioning:-
+	Trove - Database as Service (for both Relational and Non-relational DB engines)
+	Sahara - Bigdata processing
+
+Keystone - Identity Service (User Authentication and Autherization, provides authorization in between openstack services)
+
+API Proxies:-
+	EC2API - EC2 API Proxy (EC2 compatible API to Nova)
+
+Web Frontend:-
+	Horizon - Dashboard (Web based user interface to OpenStack services)
