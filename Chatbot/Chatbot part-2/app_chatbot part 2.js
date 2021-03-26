@@ -56,14 +56,13 @@ app.initUserHomework = function(data, db, callback) {
     });
   }
 
-  app.updateHomework = function(data, db, callback) {
+  app.updateHomework = function(sessionID, data, db, callback) {
     // Get the documents collection
     var collection = db.collection('homework');
     // Insert some documents
-    collection.insert
-    collection.insert(data, function(err, result) {
+    collection.updateOne({ _id : ObjectId("605dbd6165a19305fa62f2d5")},data, function(err, doc) {
       if(err) throw err;
-      callback(result);
+      callback(doc);
     });
   }
 app.findDocument = function(sessionID, db, callback) {
@@ -142,11 +141,13 @@ app.speechHandler = function(text, id, cb) {
       .then(responses => {
         console.log('Detected intent');
         const result = responses[0].queryResult;
+        console.log(result)
         console.log(`  Query: ${result.queryText}`);
         console.log(`  Response: ${result.fulfillmentText}`);
         if (result.intent) {
           console.log(`  Intent: ${result.intent.displayName}`);
           console.log(result.fulfillmentText);
+        
           if(result.parameters.due !== "" && result.parameters.subject !== "")
           {
             // here we have enough information to  save our homework assignment to the database.
@@ -155,9 +156,9 @@ app.speechHandler = function(text, id, cb) {
               if(err) {
                 console.log(err)
               }
-            
-            
-                    app.initUserHomework({due:result.parameters.due, subject:result.parameters.subject},  db, function(doc){
+           
+            console.log(result.parameters.fields.due.stringValue, result.parameters.subject.stringValue)
+                    app.updateHomework({$push: { homework: {due:result.parameters.due.stringValue, subject:result.parameters.subject.stringValue}}},  db, function(doc){
                       client.close();
                     });
         
